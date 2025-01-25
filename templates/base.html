@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The nature shop</title>
+</head>
+<body>
+
+<a href="{% url 'index' %}">
+    <h1>The nature shop</h1>
+</a>
+
+{% if user.is_authenticated %}
+   {{ user.username }}
+<a href="{% url 'accounts:profile' %}">My profile</a>
+<a href="{% url 'accounts:logout' %}">Disconnect</a>
+{% else %}
+   <a href="{% url 'accounts:login' %}">Connection</a>
+   <a href="{% url 'accounts:signup' %}">Inscription</a>
+{% endif %}
+
+{% if user.cart %}
+  <p>
+      <a href="{% url 'store:cart' %}">View Cart ({{ user.cart.orders.count }})</a>
+  </p>
+      {% endif %}
+
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

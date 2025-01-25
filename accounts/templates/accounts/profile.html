@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST">
+     {% csrf_token %}
+     {{ form.as_p }}
+
+      {% if messages %}
+         <ul class="messages">
+             {% for message in  messages %}
+                 <li>{{ message }}</li>
+             {% endfor %}
+         </ul>
+      {% endif %}
+
+      <button type="submit">backup</button>
+</form>
+{% if addresse %}
+    <h1>Delivery addresses</h1>
+{% endif %}
+
+{% for address in addresses %}
+
+{% include 'accounts/address.html' %}
+
+{% endfor %}
+
+{% endblock %}

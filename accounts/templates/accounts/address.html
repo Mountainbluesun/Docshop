@@ -1,0 +1,30 @@
+<div>
+    <h3>{{ address.name }} {% if address.default %} - default{% endif %}</h3>
+
+
+    <p>
+       {{ address.address_1 }}
+    </p>
+    {% if address.address_2 %}
+       <p>
+           {{ address.address_2 }}
+       </p>
+    {% endif %}
+    <p>
+        {{ address.city }}, {{ address.zip.code }}
+    </p>
+     <p>
+        {{ address.get_country_display|upper }}
+    </p>
+
+     {% if not address.default %}
+     <a href="{% url 'accounts:set-default-shipping' address.pk %}">
+          Set as default
+     </a>
+     {% endif %}
+
+    <p>
+        <a href="{% url 'accounts:delete-address' address.pk %}">Address Delete</a>
+    </p>
+
+</div>
